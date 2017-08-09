@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <book category="cooking">
+        <title lang="en">Everyday Italian</title>
+        <year>2005</year>
+        <price>30.00</price>
+        <authors>
+            <author>Giada De Laurentiis</author>
+            <author>Sam T. Bruce</author>
+        </authors>
+    </book>
+    <book category="children">
+        <title lang="en">Harry Potter</title>
+        <year>2005</year>
+        <price>29.99</price>
+        <authors>
+            <author>J K. Rowling</author>
+            <author>Erik T. Ray</author>
+        </authors>
+    </book>
+    <book category="web">
+        <title lang="en">Learning XML</title>
+        <year>2003</year>
+        <price>39.95</price>
+        <authors>
+            <author>Erik T. Ray</author>
+        </authors>
+    </book>
+</bookstore>

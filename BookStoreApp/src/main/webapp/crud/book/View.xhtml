@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBookTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBookLabel_id}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bookController.selected.id}" 
+                                  title="#{bundle.ViewBookTitle_id}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bundle.ViewBookLabel_category}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bookController.selected.category}" 
+                                  title="#{bundle.ViewBookTitle_category}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bundle.ViewBookLabel_title}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bookController.selected.title}" 
+                                  title="#{bundle.ViewBookTitle_title}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bundle.ViewBookLabel_year}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bookController.selected.year}" 
+                                  title="#{bundle.ViewBookTitle_year}"
+                                  class="list-group-item">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBookLabel_price}"
+                                  class="list-group-item"/>
+                    <h:outputText value="#{bookController.selected.price}" 
+                                  title="#{bundle.ViewBookTitle_price}"
+                                  class="list-group-item"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bookController.destroyAndView}" value="#{bundle.ViewBookDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBookEditLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="#{bookController.prepareList}" value="#{bundle.ViewBookShowAllLink}"/>
+                <br />
+                <br />
+                <h3>List of Authors</h3>
+                <h:dataTable value="#{authorController.items}" var="item" 
+                             border="0" cellpadding="2" cellspacing="0" 
+                             rowClasses="jsfcrud_odd_row,jsfcrud_even_row" 
+                             rules="all" style="border:solid 1px"
+                             class="table table-striped">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAuthorTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAuthorTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAuthorTitle_bookId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bookId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{authorController.prepareView}" value="#{bundle.ListAuthorViewLink}">
+                                <f:setPropertyActionListener target="#{authorController.selectedAuthor}" value="#{item}" />
+                            </h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{authorController.prepareEdit}" value="#{bundle.ListAuthorEditLink}">
+                                <f:setPropertyActionListener target="#{authorController.selectedAuthor}" value="#{item}" />
+                            </h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{authorController.destroy}" value="#{bundle.ListAuthorDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                <h:link outcome="/index" value="#{bundle.ViewBookIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
